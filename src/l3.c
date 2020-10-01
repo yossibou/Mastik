@@ -673,4 +673,17 @@ int l3_repeatedprobecount(l3pp_t l3, int nrecords, uint16_t *results, int slot) 
   }
   return nrecords;
 }
+void * l3_getline(l3pp_t l3, int set, int line) { //vlist_t list, int count, int offset) {
+#ifdef FULLMAPPING
+return vl_get((vlist_t) l3->groups[set], line);
+#else
+//if(vl_len(l3->groups[set])==l3_getAssociativity(l3)){
+// return &l3->groups[set];
+// }
+vlist_t OffSetlist = l3->groups[set / l3->groupsize];
+int offset = (set % l3->groupsize) * L3_CACHELINE;
+return OFFSET(vl_get(OffSetlist,line),offset);
+
+#endif
+}
 

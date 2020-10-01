@@ -66,7 +66,7 @@ void l3_bprobecount(l3pp_t l3, uint16_t *results);
 
 int l3_repeatedprobe(l3pp_t l3, int nrecords, uint16_t *results, int slot);
 int l3_repeatedprobecount(l3pp_t l3, int nrecords, uint16_t *results, int slot);
-
+void * l3_getline(l3pp_t l3, int set, int line);
 
 #endif // __L3_H__
 
